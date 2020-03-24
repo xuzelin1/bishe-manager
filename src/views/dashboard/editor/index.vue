@@ -2,8 +2,8 @@
   <div class="dashboard-editor-container">
     <div class=" clearfix">
       <pan-thumb :image="avatar" style="float: left">
-        <!-- Your roles:
-        <span v-for="item in roles" :key="item" class="pan-info-roles">{{ item }}</span> -->
+        Your roles:
+        <span v-for="item in roles" :key="item" class="pan-info-roles">{{ item }}</span>
 
       </pan-thumb>
       <div class="info-container">
@@ -45,6 +45,7 @@ export default {
   },
   computed: {
     ...mapGetters([
+      'roles',
       'name',
       'avatar',
       'storeName',
@@ -67,7 +68,7 @@ export default {
     min-height: 100vh;
     padding: 50px 60px 0px;
     .pan-info-roles {
-      font-size: 12px;
+      font-size: 16px;
       font-weight: 700;
       color: #333;
       display: block;

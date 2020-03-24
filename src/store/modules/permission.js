@@ -1,5 +1,6 @@
 import {
-  asyncRoutes,
+  salerRouters,
+  managerRoutes,
   constantRoutes
 } from '@/router'
 
@@ -53,11 +54,11 @@ const actions = {
   generateRoutes({ commit }, roles) {
     return new Promise(resolve => {
       let accessedRoutes = []
-      // if (roles.includes('admin')) {
-      accessedRoutes = asyncRoutes || []
-      // } else {
-      //   accessedRoutes = filterAsyncRoutes(asyncRoutes, roles)
-      // }
+      if (roles.includes('admin')) {
+        accessedRoutes = managerRoutes || []
+      } else {
+        accessedRoutes = salerRouters || []
+      }
       commit('SET_ROUTES', accessedRoutes)
       resolve(accessedRoutes)
     })

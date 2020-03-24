@@ -76,7 +76,10 @@ export const constantRoutes = [
         meta: { title: 'Dashboard', icon: 'dashboard', affix: true }
       }
     ]
-  },
+  }
+]
+
+export const salerRouters = [
   {
     path: '/product',
     component: Layout,
@@ -113,7 +116,25 @@ export const constantRoutes = [
   }
 ]
 
-export const asyncRoutes = []
+export const managerRoutes = [
+  {
+    path: '/menu',
+    component: Layout,
+    name: 'menu',
+    meta: {
+      title: '菜单管理',
+      icon: 'example'
+    },
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/menu/index'),
+        name: 'MenuList',
+        meta: { title: '菜单管理', icon: 'documentation', affix: true }
+      }
+    ]
+  }
+]
 
 const createRouter = () => new Router({
   // mode: 'history', // require service support
