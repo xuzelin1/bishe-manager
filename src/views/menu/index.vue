@@ -31,6 +31,7 @@
         >
           <template slot-scope="scope">
             <el-button type="text" size="small" @click="handleViewClick(scope.row)">查看</el-button>
+            <el-button type="text" size="small" @click="handleEditClick(scope.row)">修改</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -47,33 +48,38 @@
     </el-dialog>
 
     <el-dialog
-      title="添加商品"
+      title="添加菜单"
       :visible.sync="addModalVisiable"
       width="500px"
     >
-      <AddForm />
+      <AddForm
+        @submit="addSubmit"
+      />
     </el-dialog>
 
-    <!-- <el-dialog
-      title="修改商品"
+    <el-dialog
+      title="修改菜单"
       :visible.sync="editModalVisiable"
       width="500px"
     >
       <EditForm
-        :edit-detail="curProduct"
+        :edit-detail="curMenu"
+        @submit="addSubmit"
       />
-    </el-dialog> -->
+    </el-dialog>
   </div>
 </template>
 
 <script>
 import AddForm from './components/addform.vue'
+import EditForm from './components/editform.vue'
 import MenuView from './components/menuview.vue'
 import { mapActions } from 'vuex'
 export default {
   components: {
     MenuView,
-    AddForm
+    AddForm,
+    EditForm
   },
   data() {
     return {
@@ -81,7 +87,8 @@ export default {
       curDetail: {},
       infoModalVisiable: false,
       addModalVisiable: false,
-      editModalVisiable: false
+      editModalVisiable: false,
+      curMenu: {}
     }
   },
   mounted() {
@@ -107,6 +114,15 @@ export default {
     },
     handleAdd() {
       this.addModalVisiable = true
+    },
+    addSubmit() {
+      this.editModalVisiable = false
+      this.addModalVisiable = false
+      this.fetchList()
+    },
+    handleEditClick(row) {
+      this.editModalVisiable = true
+      this.curMenu = row
     }
   }
 }
@@ -115,5 +131,9 @@ export default {
 <style>
   .m-menu-list {
     margin: 50px;
+  }
+
+  .u-table-pane {
+    padding-top: 30px;
   }
 </style>

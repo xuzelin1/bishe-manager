@@ -133,6 +133,23 @@ export const managerRoutes = [
         meta: { title: '菜单管理', icon: 'documentation', affix: true }
       }
     ]
+  },
+  {
+    path: '/account',
+    component: Layout,
+    name: 'account',
+    meta: {
+      title: '账号管理',
+      icon: 'example'
+    },
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/account/list'),
+        name: 'AccountList',
+        meta: { title: '账号管理', icon: 'documentation', affix: true }
+      }
+    ]
   }
 ]
 

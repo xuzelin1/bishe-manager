@@ -2,22 +2,22 @@ import request from '@/utils/request'
 
 export function getList(data) {
   return request({
-    url: '/menus/list',
+    url: '/accounts/list',
     method: 'get'
   })
 }
 
-export function createMenu(data) {
+export function createAccount(data) {
   return request({
-    url: '/menus/create',
+    url: '/accounts/create',
     method: 'post',
     data
   })
 }
 
-export function editMenu(data) {
+export function editAccount(data) {
   return request({
-    url: '/menus/edit',
+    url: '/accounts/edit',
     method: 'post',
     data
   })

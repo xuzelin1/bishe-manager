@@ -32,7 +32,7 @@
         <el-input v-model="addForm.hot" />
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="submitForm('addForm')">立即创建</el-button>
+        <el-button type="primary" @click="submitForm('addForm')">立即修改</el-button>
         <el-button @click="resetForm('addForm')">重置</el-button>
       </el-form-item>
     </el-form>
@@ -42,14 +42,23 @@
 <script>
 import { mapActions } from 'vuex'
 export default {
+  props: {
+    editDetail: {
+      type: Object,
+      default() {
+        return {
+          _id: '',
+          key: '',
+          title: '',
+          childs: [],
+          hot: 0
+        }
+      }
+    }
+  },
   data() {
     return {
-      addForm: {
-        key: 'test',
-        title: '测试',
-        childs: [],
-        hot: 0
-      },
+      addForm: JSON.parse(JSON.stringify(this.editDetail)),
       curChild: '',
       rules: {
         key: [
@@ -68,9 +77,14 @@ export default {
       inputVisible: false
     }
   },
+  watch: {
+    editDetail(value) {
+      this.addForm = JSON.parse(JSON.stringify(value))
+    }
+  },
   methods: {
     ...mapActions('menu', [
-      'createMenu'
+      'editMenu'
     ]),
     handleClose(tag) {
       this.addForm.childs.splice(this.addForm.childs.indexOf(tag), 1)
@@ -79,12 +93,14 @@ export default {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           const {
+            _id,
             key,
             title,
             childs,
             hot
           } = this.addForm
-          this.createMenu({
+          this.editMenu({
+            _id,
             key,
             title,
             childs,

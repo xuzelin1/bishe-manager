@@ -1,8 +1,8 @@
 import {
   getList,
-  createMenu,
-  editMenu
-} from '@/api/menu'
+  createAccount,
+  editAccount
+} from '@/api/account'
 
 const state = {
   list: [],
@@ -27,9 +27,9 @@ const actions = {
       })
     })
   },
-  createMenu({ commit, state }, data) {
+  createAccount({ commit, state }, data) {
     return new Promise((resolve, reject) => {
-      createMenu(data).then(response => {
+      createAccount(data).then(response => {
         const data = response
         resolve(data)
       }).catch(error => {
@@ -37,9 +37,10 @@ const actions = {
       })
     })
   },
-  editMenu({ commit, state }, data) {
+
+  editAccount({ commit, state }, data) {
     return new Promise((resolve, reject) => {
-      editMenu(data).then(response => {
+      editAccount(data).then(response => {
         const data = response
         resolve(data)
       }).catch(error => {
