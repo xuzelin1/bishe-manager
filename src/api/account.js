@@ -3,7 +3,7 @@ import request from '@/utils/request'
 export function getList(data) {
   return request({
     url: '/accounts/list',
-    method: 'get'
+    method: 'post'
   })
 }
 
@@ -15,9 +15,9 @@ export function createAccount(data) {
   })
 }
 
-export function editAccount(data) {
+export function forbidAccount(data) {
   return request({
-    url: '/accounts/edit',
+    url: '/accounts/forbid',
     method: 'post',
     data
   })

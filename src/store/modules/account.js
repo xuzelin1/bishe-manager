@@ -1,7 +1,7 @@
 import {
   getList,
   createAccount,
-  editAccount
+  forbidAccount
 } from '@/api/account'
 
 const state = {
@@ -38,9 +38,9 @@ const actions = {
     })
   },
 
-  editAccount({ commit, state }, data) {
+  forbidAccount({ commit, state }, data) {
     return new Promise((resolve, reject) => {
-      editAccount(data).then(response => {
+      forbidAccount(data).then(response => {
         const data = response
         resolve(data)
       }).catch(error => {

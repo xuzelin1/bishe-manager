@@ -161,11 +161,13 @@ export default {
             username: this.loginForm.username,
             password: CryptoJS.MD5(this.loginForm.password).toString()
           })
-            .then(() => {
+            .then((res) => {
+              console.log(res)
               this.$router.push({ path: this.redirect || '/', query: this.otherQuery })
               this.loading = false
             })
-            .catch(() => {
+            .catch((err) => {
+              this.$message.error(err.msg)
               this.loading = false
             })
         } else {
