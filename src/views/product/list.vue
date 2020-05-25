@@ -82,17 +82,29 @@
       />
     </el-dialog>
 
+    <el-dialog
+      title="商品信息"
+      :visible.sync="viewModalVisiable"
+      width="800px"
+    >
+      <ProductView
+        :cur-detail="curProduct"
+      />
+    </el-dialog>
+
   </div>
 </template>
 
 <script>
 import AddForm from './components/addform.vue'
 import EditForm from './components/editForm.vue'
+import ProductView from './components/productview'
 import { mapActions, mapState } from 'vuex'
 export default {
   components: {
     AddForm,
-    EditForm
+    EditForm,
+    ProductView
   },
   data() {
     return {
@@ -107,6 +119,7 @@ export default {
       }],
       addModalVisiable: false,
       editModalVisiable: false,
+      viewModalVisiable: false,
       curProduct: {},
       total: 0,
       page: 1
@@ -134,6 +147,8 @@ export default {
     },
     handleViewClick(row) {
       console.log(row)
+      this.curProduct = row
+      this.viewModalVisiable = true
     },
     handleEditClick(row) {
       console.log(row)

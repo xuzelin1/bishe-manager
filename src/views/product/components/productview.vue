@@ -1,17 +1,15 @@
 <template>
   <div class="m-sale-view">
-    <h3>订单信息</h3>
-    <el-row>
-      <el-col v-for="sale in saleColumns" :key="sale.key" :span="12">
-        <div class="u-item-title">{{ sale.title }}</div>
-        <div class="u-item-info">{{ curDetail[sale.key] }}</div>
-      </el-col>
-    </el-row>
-    <h3>商品信息</h3>
     <el-row>
       <el-col v-for="pro in productColumns" :key="pro.key" :span="12">
         <div class="u-item-title">{{ pro.title }}</div>
-        <div class="u-item-info">{{ curDetail.proId[pro.key] }}</div>
+        <div class="u-item-info">{{ curDetail[pro.key] }}</div>
+      </el-col>
+    </el-row>
+    <el-row>
+      <el-col>
+        <div class="u-item-title">商品图片</div>
+        <el-image :src="curDetail['url']" />
       </el-col>
     </el-row>
   </div>
@@ -24,55 +22,28 @@ export default {
       type: Object,
       default() {
         return {
-          proId: {
-            name: '',
-            price: '',
-            oldPrice: '',
-            desc: '',
-            url: '',
-            area: '',
-            salenum: 0,
-            type: '',
-            salerId: '',
-            commentNum: 0,
-            star: 0,
-            position: '',
-            percapita: 0,
-            inventory: 0,
-            keywords: '',
-            storeId: ''
-          },
-          userId: '',
-          createTime: '',
-          total: 0,
-          productNum: 0,
-          status: '',
-          statusZh: '',
-          storeId: ''
+          name: '',
+          price: '',
+          oldPrice: '',
+          desc: '',
+          url: '',
+          area: '',
+          salenum: 0,
+          type: '',
+          salerId: '',
+          commentNum: 0,
+          star: 0,
+          position: '',
+          percapita: 0,
+          inventory: 0,
+          keywords: '',
+          storeId: {}
         }
       }
     }
   },
   data() {
     return {
-      saleColumns: [
-        {
-          title: '订单时间',
-          key: 'createTime'
-        },
-        {
-          title: '订单状态',
-          key: 'statusZh'
-        },
-        {
-          title: '订单数量',
-          key: 'productNum'
-        },
-        {
-          title: '订单总价',
-          key: 'total'
-        }
-      ],
       productColumns: [
         {
           title: '商品名称',
